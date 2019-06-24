@@ -201,5 +201,7 @@ CREATE TABLE Student
 		CONSTRAINT StudentKey PRIMARY KEY(Sno)
 	);
 ```
-
+## 第六章
+### 例6.1 
+建立一个描述学校教务的数据库，该数据库涉及的对象包括
 
