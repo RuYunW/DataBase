@@ -176,7 +176,30 @@ CREATE VIEW IS_S1(Sno,Sname,Grade)
 		Student.Sno=SC.Sno AND 
 		CS.Cno='1';
 ```
+## 第四章
+### 概述
+数据库安全性：保护数据库以防止不合法使用所造成的数据泄露、更改或破坏  
 
+## 第五章
+数据库完整性：数据的正确性和相容性  
+数据库管理系统必须能够实现如下功能  
+> 1. 提供定义完整性约束的条件和机制
+> 2. 提供完整性检查的方法
+> 3. 进行违约处理
 
+### 完整性约束命名子句
+```SQL
+CREATE TABLE Student
+	(Sno NUMERIC(6)
+		CONSTRAINT C1 CHECK (Sno BETWEEN 90000 AND 99999),
+	Sname CHAR(20)
+		CONSTRAINT C2 NOT NULL,
+	Sage NUMERIC(3)
+		CONSTRAINT C3 CHECK (Sage<30),
+	Ssex CHAR(2)
+		CONSTRAINT C4 CHECK (Ssex IN ('男','女')),
+		CONSTRAINT StudentKey PRIMARY KEY(Sno)
+	);
+```
 
 
