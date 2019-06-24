@@ -1,8 +1,8 @@
 #一些课本上的SQL语句
-##建表
+##1. 定义基本表
 ###例3.5 建立一个学生表Student
 ```SQL
-	CREATE TABLE Student
+CREATE TABLE Student
 	(Sno CHAR(9) PRIMARY KEY,  
 	Sname CHAR(20) UNIQUE,  
 	Ssex CHAR(2),  
@@ -31,4 +31,19 @@ CREATE TABLE SC
 	FOREIGN KEY(Sno) REFERENCES Student(Sno),
 	FOREIGN KEY(Cno) REFERENCES Course(Cno)
 	);
+```
+
+## 2. 修改基本表
+### 例3.8 向Student表增加"入学时间"列，其数据类型为日期型
+```SQL
+ALTER TABLE Student ADD S_entrance DATE;
+```
+> 不论基本表中原来是否已有数据，新增加的列一律为空值 
+### 例3.9 将年龄的数据类型由字符型改为整数
+```SQL
+ALTER TABLE Student ALTER COLUMN Sage INT;
+```
+### 例3.10 增加课程名称必须取唯一值的约束条件
+```SQL
+ALTER TABLE Course ADD UNIQUE(Cname);
 ```
