@@ -127,6 +127,55 @@ SELECT AVG(Grade) FROM CS WHERE Cno='1';
 ```SQL
 SELECT Cno,COUNT(Sno) FROM SC GROUP BY Cno;
 ```
+```SQL
+SELECT Sno FROM CS GROUP BY Sno HAVING COUNT(*)>3;
+```
+```SQL
+SELECT Sno,AVG(Grade) FROM SC GROUP BY Sno HAVING AVG(Grade)>=90;
+```
+> WHERE 作用于基本表或视图，从中选择满足条件的元组；HAVING 作用于组，从中选择满足条件的组
+
+### 数据更新
+```SQL
+INSERT INTO Student (Sno,Sname,Ssex,Sdept,Sage) VALUES ('2012111','杨超越','女','CS',18);
+```
+```SQL
+CREATE TABLE Dept_age
+	(Sdept CHAR(15),
+	Avg_age SMALLINT);
+INSERT INTO Dept_age(Sdept,Avg_age) SELECT Sdept,AVG(Sage) FROM Student GROUP BY Sdept;
+```
+### 修改数据
+```SQL
+UPDATE Student SET Sage=22 WHERE Sno='20120001';
+```
+```SQL
+UPDATE Student SET Sage=Sage+1;
+```
+
+### 删除数据
+```SQL
+DELETE FROM Student WHERE Sno='20120001';
+```
+
+```SQL
+DELETE FROM SC WHERE Sno IN (
+	SELECT Sno FROM Student WHERE Sdept='CS';
+	)
+```
+### 视图
+```SQL
+CREATE VIEW IS_Student AS SELECT Sno,Sname,Sage FROM Student WHERE Sdepy='iS' WITH CHECK OPTION;
+```
+```SQL
+CREATE VIEW IS_S1(Sno,Sname,Grade) 
+	AS 
+	SELECT Student.Sno,Sname,Grade 
+	FROM Student,SC 
+	WHERE Sdept='IS' AND 
+		Student.Sno=SC.Sno AND 
+		CS.Cno='1';
+```
 
 
 
